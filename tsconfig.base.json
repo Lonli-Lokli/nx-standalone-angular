@@ -14,7 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@standalone/logic": ["projects/logic/src/public-api"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
