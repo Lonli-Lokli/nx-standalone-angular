@@ -1,6 +1,6 @@
 {
   "installDependencies": true,
-  "startCommand": "npm run start",
+  "startCommand": "npm run decorate && npm run start",
   "env": {
     "ANYTHING": "yo!"
   }
