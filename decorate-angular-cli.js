@@ -21,6 +21,16 @@
  * - Delete and reinstall your node_modules
  */
 
+let output;
+try {
+  output = require('@nrwl/workspace').output;
+} catch (e) {
+  console.warn(
+    'Angular CLI could not be decorated to enable computation caching. Please ensure @nrwl/workspace is installed.'
+  );
+  process.exit(0);
+}
+
 output.log({
   title: 'fs loading',
 });
@@ -37,15 +47,6 @@ output.log({
   title: 'cp loading done',
 });
 const isWindows = os.platform() === 'win32';
-let output;
-try {
-  output = require('@nrwl/workspace').output;
-} catch (e) {
-  console.warn(
-    'Angular CLI could not be decorated to enable computation caching. Please ensure @nrwl/workspace is installed.'
-  );
-  process.exit(0);
-}
 
 /**
  * Symlink of ng to nx, so you can keep using `ng build/test/lint` and still
