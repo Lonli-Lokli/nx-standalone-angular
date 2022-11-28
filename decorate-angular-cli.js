@@ -21,9 +21,21 @@
  * - Delete and reinstall your node_modules
  */
 
+output.log({
+  title: 'fs loading',
+});
 const fs = require('fs');
+output.log({
+  title: 'os loading',
+});
 const os = require('os');
+output.log({
+  title: 'cp loading',
+});
 const cp = require('child_process');
+output.log({
+  title: 'cp loading done',
+});
 const isWindows = os.platform() === 'win32';
 let output;
 try {
