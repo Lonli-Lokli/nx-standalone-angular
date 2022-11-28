@@ -67,6 +67,7 @@ function symlinkNgCLItoNxCLI() {
 }
 
 try {
+  output.log({ title: 'Angular CLI decoration started.' });
   symlinkNgCLItoNxCLI();
   require('nx/src/adapter/decorate-cli').decorateCli();
   output.log({
