@@ -1,0 +1,98 @@
+{
+  "name": "ng-app",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/ng-app/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/ng-app",
+        "index": "apps/ng-app/src/index.html",
+        "main": "apps/ng-app/src/main.tsx",
+        "polyfills": "apps/ng-app/src/polyfills.ts",
+        "tsConfig": "apps/ng-app/tsconfig.app.json",
+        "assets": [
+          "apps/ng-app/src/favicon.ico",
+          "apps/ng-app/src/assets",
+          {
+            "input": "libs/themes/src/lib/assets",
+            "glob": "**/*",
+            "output": "assets/themes"
+          }
+        ],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "dependsOn": [],
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/ng-app/src/environments/environment.ts",
+              "with": "apps/ng-app/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "extractCss": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": true,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "10mb"
+            }
+          ]
+        },
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "options": {
+        "buildTarget": "ng-app:build",
+        "hmr": true,
+        "proxyConfig": "apps/ng-app/proxy.conf.json"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "ng-app:build:production",
+          "hmr": false
+        },
+        "development": {
+          "buildTarget": "ng-app:build:development"
+        }
+      },
+      "dependsOn": [],
+      "defaultConfiguration": "development"
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/ng-app/**/*.{ts,tsx,js,jsx}"]
+      },
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/apps/ng-app"],
+      "options": {
+        "jestConfig": "apps/ng-app/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
