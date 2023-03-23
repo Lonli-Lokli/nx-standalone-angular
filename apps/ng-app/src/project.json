@@ -63,8 +63,7 @@
       "executor": "@nrwl/webpack:dev-server",
       "options": {
         "buildTarget": "ng-app:build",
-        "hmr": true,
-        "proxyConfig": "apps/ng-app/proxy.conf.json"
+        "hmr": true
       },
       "configurations": {
         "production": {
